@@ -18,7 +18,7 @@ import java.util.Collection;
  * Created by vkhudiakov on 13/09/15.
  */
 @RestController
-@RequestMapping("/{userId}/bookmarks")
+@RequestMapping("/rest/{userId}/bookmarks")
 public class BookmarkRestController {
 
     private final BookmarkRepository bookmarkRepository;

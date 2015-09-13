@@ -42,6 +42,14 @@ public class Bookmark {
         return description;
     }
 
+    public void setUri(String uri) {
+        this.uri = uri;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     public Bookmark(Account account, String uri, String description) {
         this.account = account;
         this.uri = uri;
