@@ -4,6 +4,7 @@ import bookmarks.data.model.Account;
 import bookmarks.data.model.Bookmark;
 import bookmarks.data.repository.AccountRepository;
 import bookmarks.data.repository.BookmarkRepository;
+import bookmarks.controllers.exceptions.UserNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
