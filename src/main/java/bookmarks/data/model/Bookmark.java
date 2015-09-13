@@ -1,5 +1,6 @@
-package bookmarks;
+package bookmarks.data.model;
 
+import bookmarks.data.model.Account;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.Entity;

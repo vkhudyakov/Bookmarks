@@ -1,4 +1,4 @@
-package bookmarks;
+package bookmarks.data.model;
 
 /**
  * Created by vkhudiakov on 13/09/15.
@@ -15,7 +15,7 @@ import java.util.Set;
 @Entity
 public class Account {
 
-    @OneToMany
+    @OneToMany (mappedBy = "account")
     private Set<Bookmark> bookmarks = new HashSet<>();
 
     @Id
@@ -42,7 +42,7 @@ public class Account {
         return username;
     }
 
-    public Account(String password, String username) {
+    public Account(String username, String password) {
         this.password = password;
         this.username = username;
     }
