@@ -5,22 +5,22 @@
 
 <fmt:setLocale value="en"/>
 <fmt:setBundle basename="messages.properties" var="lang"/>
-<h1><fmt:message key="bookmark.form.title"/></h1>
+<h1><fmt:message key="bookmarkedit.form.title"/></h1>
 
 <c:if test="${not empty statusMessageKey}">
     <p><fmt:message key="${statusMessageKey}"/></p>
 </c:if>
 
-<c:url var="url" value="/ManageBookmarks/${userID}/add" />
+<c:url var="url" value="/ManageBookmarks/${userID}/edit?bid=${bid}" />
 <form:form modelAttribute="bookmarkForm" method="POST" action="${url}"  >
     <fieldset>
         <div class="form-row">
             <label path="uri"><fmt:message key="bookmark.form.uri"/>:</label>
-            <span class="input"><form:input path="uri" /></span>
+            <span class="input" value=${bookmarkForm.uri}><form:input path="uri" /></span>
         </div>
         <div class="form-row">
             <label path="description"><fmt:message key="bookmark.form.description"/>:</label>
-            <span class="input"><form:input path="description" /></span>
+            <span class="input" value=${bookmarkForm.description}><form:input path="description" /></span>
         </div>
         <div class="form-buttons">
             <div class="button"><input name="submit" type="submit" value="<fmt:message key="button.save"/>" /></div>

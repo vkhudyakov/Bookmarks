@@ -7,10 +7,7 @@ import bookmarks.data.repository.BookmarkRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.ui.Model;
 
 import java.util.Collection;
@@ -51,7 +48,33 @@ public class webcontroller {
         Account account = accountRepository.findByUsername(userID).get();
         Bookmark newBookmark = new Bookmark(account,bookmark.uri,bookmark.description);
         bookmarkRepository.save(newBookmark);
+        return "redirect:/ManageBookmarks/"+userID+"/view";
+    }
+
+    @RequestMapping(value = "/delete", method = RequestMethod.GET)
+    public String deleteBookmarks(@RequestParam("bid") Long bid, @PathVariable String userID, Model model) {
+        bookmarkRepository.delete(bookmarkRepository.findOne(bid));
         return "result";
+    }
+
+    @RequestMapping(value = "/edit", method = RequestMethod.GET)
+    public String editBookmarks(@RequestParam("bid") Long bid, @PathVariable String userID, Model model) {
+        Bookmark bookmark = bookmarkRepository.findOne(bid);
+        model.addAttribute("bid", bid);
+        model.addAttribute("bookmarkForm", bookmark);
+        return "editbookmark";
+    }
+
+
+    @RequestMapping(value = "/edit", method = RequestMethod.POST)
+    public String editBookmarks(@RequestParam("bid") Long bid,@ModelAttribute("bookmarkForm") Bookmark bookmark, @PathVariable String userID, Model model) {
+        Account account = accountRepository.findByUsername(userID).get();
+        Bookmark updated_bookmark = bookmarkRepository.findOne(bid);
+        updated_bookmark.setUri(bookmark.uri);
+        updated_bookmark.setDescription(bookmark.description);
+        bookmarkRepository.save(updated_bookmark);
+        return "redirect:/ManageBookmarks/"+userID+"/view";
+
     }
 
     @Autowired
