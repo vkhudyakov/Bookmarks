@@ -5,13 +5,15 @@
 
 <fmt:setLocale value="en"/>
 <fmt:setBundle basename="messages.properties" var="lang"/>
+<%@include file="header.jsp" %>
+
 <h1><fmt:message key="bookmark.form.title"/></h1>
 
 <c:if test="${not empty statusMessageKey}">
     <p><fmt:message key="${statusMessageKey}"/></p>
 </c:if>
 
-<c:url var="url" value="/ManageBookmarks/${userID}/add" />
+<c:url var="url" value="/ManageBookmarks/add" />
 <form:form modelAttribute="bookmarkForm" method="POST" action="${url}"  >
     <fieldset>
         <div class="form-row">
